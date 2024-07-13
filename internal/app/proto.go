@@ -8,7 +8,6 @@ import (
 	"github.com/jhump/protoreflect/desc/protoparse"
 	"github.com/jhump/protoreflect/grpcreflect"
 	"google.golang.org/grpc"
-	rpb "google.golang.org/grpc/reflection/grpc_reflection_v1alpha"
 	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoregistry"
 	"google.golang.org/protobuf/types/descriptorpb"
@@ -21,8 +20,7 @@ func protoFilesFromReflectionAPI(ctx context.Context, conn *grpc.ClientConn) (*p
 		return nil, errors.New("app: no connection to a grpc server available")
 	}
 
-	stub := rpb.NewServerReflectionClient(conn)
-	client := grpcreflect.NewClient(ctx, stub)
+	client := grpcreflect.NewClientAuto(ctx, conn)
 	defer client.Reset()
 
 	services, err := client.ListServices()

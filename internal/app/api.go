@@ -121,7 +121,7 @@ func (a *api) checkForUpdate() {
 	}
 	r, err := checkForUpdate()
 	if err != nil {
-		if err == noUpdate {
+		if err == errNoUpdate {
 			runtime.LogInfo(a.ctx, err.Error())
 			return
 		}
