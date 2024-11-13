@@ -3,7 +3,6 @@
   import Header from "./Header.svelte";
   import Content from "./Content.svelte";
   import Errors from "./Errors.svelte";
-  import Updater from "./Updater.svelte";
 
   const modalSettings = {
     key: 'modal',
@@ -98,6 +97,5 @@
     <Header />
     <Content />
   </ModalContext>
-  <Updater />
 </main>
 
